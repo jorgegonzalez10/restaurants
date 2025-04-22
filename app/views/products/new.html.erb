@@ -1,0 +1,28 @@
+<div class="container mt-5 border rounded-4">
+  <h1>Add New Product</h1>
+<%= simple_form_for @product do |f| %>
+<% if @product.errors.any? %>
+    <div style="color: red">
+      <ul>
+        <% @product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="align-items-center gap-2 mb-3">
+    <div class="flex-grow-1">
+      <%= f.input :name, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'Add new product' } %>
+    </div>
+    <div class="flex-grow-1">
+      <%= f.input :description, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'Add description' } %>
+    </div>
+     <div class="flex-grow-1">
+      <%= f.input :price, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'Add price' } %>
+    </div>
+      <%= f.button :submit, class: 'btn btn-success p-2 mt-3 w-100' %>
+      <%= link_to 'Back to Products', products_path,  class: "btn btn-primary mt-2" %>
+    </div>
+  </div>
+<% end %>
+</div>

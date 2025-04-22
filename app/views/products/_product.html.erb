@@ -1,0 +1,11 @@
+
+<div class="card mt-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"> <%= product.name %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%= product.price %></h6>
+    <p class="card-text"><%= product.description %></p>
+
+    <%= link_to "Ver Detalle", product_path(product), class: "btn btn-primary btn-sm" %>
+<%= button_to "Eliminar", product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+  </div>
+</div>
