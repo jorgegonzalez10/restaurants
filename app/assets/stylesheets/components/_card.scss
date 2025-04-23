@@ -1,5 +1,10 @@
 .grid-container {
 display: grid;
 grid-column-gap: 10px;
-grid-template-columns: repeat(4, 1fr)
+grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-item {
+  height: 459px;
+  width: 320px !important;
 }

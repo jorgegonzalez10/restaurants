@@ -1,1 +1,20 @@
 @import "card";
+@import "button";
+
+.discount {
+  text-decoration: line-through;
+ }
+
+ .rating {
+  background-color: yellow;
+  color: #212529;
+  // padding-top: 12px;
+  // padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+  border-radius: 0.375rem;
+ }

@@ -32,7 +32,7 @@ product_data = [
   },
   {
     name: "Samsung Galaxy S22",
-    url: "https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$"
+    url: "https://m.media-amazon.com/images/I/61jAwWf6GYL.jpg"
   },
   {
     name: "Sony WH-1000XM5",
