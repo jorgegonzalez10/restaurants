@@ -1,6 +1,8 @@
 
 <div class="grid-item position-relative bg-light card p-1 pt-2 mt-3 shadow" style="width: 18rem;">
   <div class="container">
+    <h5 class="btn btn-dark btn-sm mt-3 position-absolute px-3 end-4 rounded-5 fw-bold"><%=rango = rand(10..40) %>% OFF</h5>
+    <%= button_to "Remove", product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm position-absolute top-0 end-0" if  params[:action] == 'owner' %>
   <% if product.photo.attached? %>
     <%= image_tag product.photo, class:"card-img-top mt-2 mb-2 rounded-4" %>
   <%else%>
@@ -11,11 +13,12 @@
     <h5 class="card-subtitle text-body-secondary ms-0"> <%= product.name %></h5>
     </div>
     <div class="d-flex ">
-    <strong><h3 class="card-title mt-2 mb-2 fw-bold">$<%= number_with_precision(product.price, precision: 0) %></h3></strong>   <h6 class="discount mt-3 ms-1 me-3">$<%= number_with_precision(product.price + 100, precision: 0 )%></h6>
-    <% 5.times do %>
+    <strong><h3 class="card-title mt-2 mb-2 fw-bold">$<%= number_with_precision(product.price, precision: 0) %></h3></strong>   <h6 class="discount mt-3 ms-1 me-3">$<%= number_with_precision(product.price * rango/100, precision: 0 )%></h6>
+    <%rating = rand(3..5)%>
+    <%  rating.times do %>
     <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
     <%end%>
-    <h6 class="rating">5.0</h6>
+    <h6 class="rating"><%=rating%></h6>
     </div>
       <%= link_to product_path(product), class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3" do %>
       <i class="fa-solid fa-cart-shopping"></i>
@@ -24,7 +27,6 @@
 
     <%#= link_to "Ver Detalle", product_path(product), class: "btn btn-primary btn-sm" %>
 
-    <%= button_to "Eliminar", product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" if  params[:action] == 'owner' %>
   </div>
 </div>
 

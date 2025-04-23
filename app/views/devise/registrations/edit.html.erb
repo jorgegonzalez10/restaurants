@@ -1,3 +1,4 @@
+<div class="container mt-5 border rounded-4">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -24,12 +25,13 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", class:"btn btn-success p-2 mt-3 w-100" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3 class="mt-4 fw-bold fs-4">Cancel my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div class=" fs-5">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger" %></div>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class:"btn btn-dark mt-3" %>
+</div>

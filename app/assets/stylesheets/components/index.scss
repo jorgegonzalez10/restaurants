@@ -1,5 +1,6 @@
 @import "card";
 @import "button";
+@import "navbar";
 
 .discount {
   text-decoration: line-through;
@@ -8,8 +9,6 @@
  .rating {
   background-color: yellow;
   color: #212529;
-  // padding-top: 12px;
-  // padding-bottom: 12px;
   padding-left: 8px;
   padding-right: 8px;
   margin-left: 10px;
