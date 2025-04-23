@@ -1,24 +1,32 @@
 
-<div class="grid-item card mt-3" style="width: 18rem;">
+<div class="grid-item position-relative bg-light card p-1 pt-2 mt-3 shadow" style="width: 18rem;">
+  <div class="container">
   <% if product.photo.attached? %>
-    <%= image_tag product.photo, class:"card-img-top" %>
+    <%= image_tag product.photo, class:"card-img-top mt-2 mb-2 rounded-4" %>
   <%else%>
-    <%= image_tag 'no-image.jpg', class:"card-img-top" %>
+    <%= image_tag 'no-image.jpg', class:"card-img-top mb-3" %>
    <%end%>
   <div class="card-body">
     <div class= "d-flex justify-content-between">
-    <h5 class="card-title"> <%= product.name %>  |  <%= product.stock %></h5>
+    <h5 class="card-subtitle text-body-secondary ms-0"> <%= product.name %></h5>
     </div>
-    <h6 class="card-subtitle mb-2 text-body-secondary"><%= product.price %></h6>
-    <p class="card-text"><%= product.description %></p>
-    <% if product.stock.nil? %>
-      <h5>Not Available</h5>
-    <% else %>
-      <h5>Available</h5>
-    <% end %>
-    <%= link_to "Ver Detalle", product_path(product), class: "btn btn-primary btn-sm" %>
+    <div class="d-flex ">
+    <strong><h3 class="card-title mt-2 mb-2 fw-bold">$<%= number_with_precision(product.price, precision: 0) %></h3></strong>   <h6 class="discount mt-3 ms-1 me-3">$<%= number_with_precision(product.price + 100, precision: 0 )%></h6>
+    <% 5.times do %>
+    <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+    <%end%>
+    <h6 class="rating">5.0</h6>
+    </div>
+      <%= link_to product_path(product), class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3" do %>
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span class="">Add to cart</span>
+      <%end%>
+
+    <%#= link_to "Ver Detalle", product_path(product), class: "btn btn-primary btn-sm" %>
 
     <%= button_to "Eliminar", product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" if  params[:action] == 'owner' %>
   </div>
 </div>
 
+
+</div>
