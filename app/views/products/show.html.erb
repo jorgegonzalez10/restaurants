@@ -1,2 +1,17 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class="container mt-5">
+<div class="card mt-3" style="width: 45rem; height: 20rem;">
+  <div class="card-body">
+    <div class= "d-flex justify-content-between">
+    <h5 class="card-title"> <%= @product.name %>  |  <%= @product.stock %></h5>
+    </div>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%= @product.price %></h6>
+    <p class="card-text"><%= @product.description %></p>
+    <% if @product.stock.nil? %>
+      <h5>Not Available</h5>
+    <% else %>
+      <h5>Available</h5>
+    <% end %>
+    <%= button_to "Eliminar", product_path(@product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+  </div>
+</div>
+</div>

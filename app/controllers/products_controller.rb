@@ -2,10 +2,14 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
   def index
-    @products = Product.all.order(created_at: :desc)
+    @products = Product.ordered
   end
 
   def show
+  end
+
+  def owner
+   @products = current_user.products
   end
 
   def new
@@ -13,12 +17,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-
+    #@product = Product.new(product_params)
+    #@product.user = current_user
+    @product = current_user.products.build(product_params)
     if @product.save
 
-       redirect_to products_url, notice: "Product was successfully created."
-
+     redirect_to products_url, notice: "Product was successfully created."
 
     else
       render :new, status: :unprocessable_entity
@@ -49,6 +53,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price)
+    params.require(:product).permit(:name, :description, :price, :stock, :photo)
   end
 end

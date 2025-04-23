@@ -1,11 +1,24 @@
 
-<div class="card mt-3" style="width: 18rem;">
+<div class="grid-item card mt-3" style="width: 18rem;">
+  <% if product.photo.attached? %>
+    <%= image_tag product.photo, class:"card-img-top" %>
+  <%else%>
+    <%= image_tag 'no-image.jpg', class:"card-img-top" %>
+   <%end%>
   <div class="card-body">
-    <h5 class="card-title"> <%= product.name %></h5>
+    <div class= "d-flex justify-content-between">
+    <h5 class="card-title"> <%= product.name %>  |  <%= product.stock %></h5>
+    </div>
     <h6 class="card-subtitle mb-2 text-body-secondary"><%= product.price %></h6>
     <p class="card-text"><%= product.description %></p>
-
+    <% if product.stock.nil? %>
+      <h5>Not Available</h5>
+    <% else %>
+      <h5>Available</h5>
+    <% end %>
     <%= link_to "Ver Detalle", product_path(product), class: "btn btn-primary btn-sm" %>
-<%= button_to "Eliminar", product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+
+    <%= button_to "Eliminar", product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" if  params[:action] == 'owner' %>
   </div>
 </div>
+
