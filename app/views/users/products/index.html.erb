@@ -1,0 +1,8 @@
+<div class="container mt-5">
+<h1>Products</h1>
+<div class="grid-container">
+  <% @products.each do |product|  %>
+<%= render "products/product", product: product %>
+  <% end %>
+</div>
+</div>
