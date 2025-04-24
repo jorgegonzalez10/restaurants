@@ -5,6 +5,10 @@ class Users::ProductsController < ApplicationController
     @products = Product.ordered
   end
 
+  def cards
+    @products = Product.ordered
+  end
+
   def show
   end
 
@@ -17,7 +21,7 @@ class Users::ProductsController < ApplicationController
     @product = current_user.products.build(product_params)
     if @product.save
 
-     redirect_to products_url, notice: "Product was successfully created."
+     redirect_to users_products_url, notice: "Product was successfully created."
 
     else
       render :new, status: :unprocessable_entity
@@ -31,12 +35,12 @@ class Users::ProductsController < ApplicationController
   def destroy
     @product.destroy
 
-    redirect_to products_url, notice: "Product was successfully destroyed.", status: :see_other
+    redirect_to users_products_url, notice: "Product was successfully destroyed.", status: :see_other
   end
 
   def update
     if @product.update(product_params)
-      redirect_to products_url, notice: "Product was successfully updated.", status: :see_other
+      redirect_to users_products_url, notice: "Product was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end

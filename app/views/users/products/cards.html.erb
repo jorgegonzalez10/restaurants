@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <div class="grid text-center">
+<h1 class="g-col-6 g-col-md-4">MyProducts</h1>
+<div class="btn-group g-col-6 g-col-md-4">
+  <%= link_to "List", users_products_path, class:"btn btn-light btn-lg active"%>
+  <%= link_to "Cards", users_products_cards_path, class:"btn btn-light btn-lg active"%>
+</div>
+</div>
+ <div class="grid-container">
+<% @products.each do |product| %>
+  <% if controller_path == 'users/products' && product.user == current_user %>
+<%= render "products/product", product: product %>
+<%end%>
+<%end%>
+ </div>
+ </div>

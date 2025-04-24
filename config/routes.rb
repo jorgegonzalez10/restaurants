@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/products/owner', to: "products#owner"
   resources :products
   namespace :users do
+    get '/products/cards', to: "products#cards"
     resources :products
   end
 
