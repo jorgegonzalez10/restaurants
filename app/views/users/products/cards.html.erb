@@ -1,9 +1,13 @@
 <div class="container mt-5">
   <div class="grid text-center">
-<h1 class="g-col-6 g-col-md-4">MyProducts</h1>
-<div class="btn-group g-col-6 g-col-md-4">
-  <%= link_to "List", users_products_path, class:"btn btn-light btn-lg active"%>
-  <%= link_to "Cards", users_products_cards_path, class:"btn btn-light btn-lg active"%>
+<div class="d-flex position-relative ">
+  <h1 class="g-col-6 g-col-md-4">My Products</h1>
+  <%=link_to "Add new product", new_users_product_path, class:"btn btn-dark btn-lg mt-3 position-absolute end-0 px-3 rounded-5 fw-bold", id:"new"%>
+</div>
+<div class="btn-group my-4 g-col-6 g-col-md-4">
+  <%= link_to "List", users_products_path, class:"btn btn-lg buttongroup"%>
+  <%= link_to "Cards", users_products_cards_path, class:"btn btn-lg active buttongroup", id:"active"%>
+
 </div>
 </div>
  <div class="grid-container">

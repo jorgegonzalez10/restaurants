@@ -4,3 +4,22 @@
   font-weight: 600;
   font-size: medium;
 }
+
+.buttongroup {
+  background-color: #212529;
+  color: #ffffff;
+  width: 150px;
+}
+
+.buttongroup:hover{
+  background-color: #273F4F;
+}
+
+#active{
+  background-color: #EFEEEA;
+}
+
+#new{
+  width: 25%;
+  padding: 1%;
+}
