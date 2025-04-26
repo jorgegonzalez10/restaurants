@@ -1,4 +1,4 @@
-<div class="container mt-5 =">
+<div class="container p-5 mt-5">
 <div class="grid text-center">
  <div class="d-flex position-relative ">
   <h1 class="g-col-6 g-col-md-4">My Products</h1>
@@ -11,7 +11,7 @@
 </div>
 <%# <div class="grid-container"> %>
 
-    <table class="table table-hover mt-4 border shadow table-list">
+    <table class="table table-hover me-5 mt-4 border shadow table-list">
   <thead class="table-list">
     <tr class="table-list">
       <th></th>
@@ -31,7 +31,9 @@
         <td class="fw-bold "><%= product.name %></td>
         <td class="fw-bold"><%= product.price %></td>
         <td class="fw-bold"><%= product.stock %></td>
-        <td class="fw-bold"><%=rango = rand(10..40) %>%</td>
+        <td class="fw-bold"> <% if product.discount.present?  %><%= product.discount %>%
+        <%else %>''
+        <%end%></td>
         <td class="fw-bold"><%rating = rand(3..5)%>
                 <% rating.times do %>
                  <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>

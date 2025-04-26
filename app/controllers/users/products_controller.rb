@@ -1,5 +1,5 @@
 class Users::ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[show edit update destroy]
 
   def index
     @products = Product.ordered
@@ -21,7 +21,7 @@ class Users::ProductsController < ApplicationController
     @product = current_user.products.build(product_params)
     if @product.save
 
-     redirect_to users_products_url, notice: "Product was successfully created."
+      redirect_to users_products_url, notice: "Product was successfully created."
 
     else
       render :new, status: :unprocessable_entity
@@ -52,6 +52,6 @@ class Users::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :photo)
+    params.require(:product).permit(:name, :description, :price, :stock, :photo, :discount)
   end
 end
