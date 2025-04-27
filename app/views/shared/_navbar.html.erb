@@ -15,6 +15,16 @@
         <li class="nav-item">
           <%= link_to "Products", products_url, class: "nav-link active fw-bold fs-5", style:"color: #ffffff;" %>
         </li>
+        <% if controller_path == 'products' %>
+         <%= form_with url: products_path, method: :get, class: "d-flex ms-5" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control-lg me-1",
+          placeholder: "Search"
+        %>
+        <%= submit_tag "Search", class: "btn btn-space border", style:"color: #ffffff;" %>
+          <% end %>
+      <%end%>
       </ul>
 
       <ul class="navbar-nav">

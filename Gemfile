@@ -29,6 +29,7 @@ gem "bootstrap"
 gem "sassc-rails"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "font-awesome-sass", "~> 6.1"
+gem 'pg_search'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
