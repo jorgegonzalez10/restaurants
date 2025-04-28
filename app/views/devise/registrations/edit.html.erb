@@ -1,5 +1,6 @@
-<div class="container mt-5 bg-white shadow border rounded-4">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container col-12 col-sm-4 mt-5 bg-white shadow border rounded-4 p-5">
+  <div class="row justify-content-center">
+   <h2 class="mb-4">Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -34,5 +35,6 @@
 
 <div class=" fs-5">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger" %></div>
 
-<%= link_to "Back", :back, class:"btn btn-dark mt-3" %>
+    <%= link_to "Back", :back, class:"btn btn-dark mt-3" %>
+  </div>
 </div>
