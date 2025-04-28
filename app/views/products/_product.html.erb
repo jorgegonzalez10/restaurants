@@ -23,11 +23,11 @@
     <strong><h3 class="card-title mt-2 mb-2 fw-bold">$<%= number_with_precision(product.price, precision: 0) %></h3></strong>   <h6 class="discount mt-3 ms-1 me-3"><% if product.discount.present? %>$<%= number_with_precision(product.price * product.discount/100, precision: 0 )%>
     <%else%>
     <%end%></h6>
-    <%rating = rand(3..5)%>
-    <%  rating.times do %>
+    <% average_rating = product.reviews.average(:rating)&.round(2) || 0 %>
+    <%  average_rating.round.to_i.times do %>
     <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
     <%end%>
-    <h6 class="rating"><%=rating%></h6>
+    <h6 class="rating"><%= average_rating%></h6>
     </div>
     <% unless controller_path == 'users/products' && product.user == current_user %>
       <%= link_to product_path(product), class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3" do %>

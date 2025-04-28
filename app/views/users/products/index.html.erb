@@ -40,10 +40,10 @@
         <td class="fw-bold"> <% if product.discount.present?  %><%= product.discount %>%
         <%else %>''
         <%end%></td>
-        <td class="fw-bold"><%rating = rand(3..5)%>
-                <% rating.times do %>
-                 <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
-                <%end%></td>
+        <td <% average_rating = product.reviews.average(:rating)&.round(2) || 0 %>>
+          <% average_rating.to_i.times do %>
+            <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+            <%end%></td>
         <td>
           <div class="d-flex">
             <%= link_to "#", class: "btn btn-lg", data: { bs_toggle: "modal", bs_target: "#productModal-#{product.id}" } do %>

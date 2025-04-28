@@ -12,11 +12,10 @@
    <div class="d-flex justify-content-between mt-3 mb-4">
     <div class="d-flex">
     <h1 class="me-4"><%= @product.name %></h1>
-    <%rating = rand(3..5)%>
-    <%  rating.times do %>
+    <%  @average_rating.round.to_i.times do %>
     <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
     <%end%>
-    <h6 class="rating"><%=rating.to_f%></h6>
+    <h6 class="rating"><%=@average_rating%></h6>
     </div>
     <div class="d-flex me-5">
     <h1 class="text-body-secondary">$<%= number_with_precision(@product.price, precision: 0) %></h1>  <h4 class="discount mt-3 ms-2 text-body-secondary "><% if @product.discount.present? %>$<%= number_with_precision(@product.price * @product.discount/100, precision: 0 )%>
@@ -25,16 +24,33 @@
     </div>
    </div>
    <h3 class="text-body-secondary description mb-4"> <%= @product.description %> </h3>
-    <h1 class="mt-5"> Reviews </h1>
+    <div class="d-flex align-items-center">
+    <h1 class=""> Reviews </h1><h5 class="mt-2 ms-2">(<%= (@reviews.count) %>)</h5>
+    </div>
       <div>
+        <% if @reviews.present? %>
+          <% @reviews.each do |review| %>
+          <div class="d-flex p-3 mt-2 border rounded-3 align-items-center justify-content-between" id="review-div">
+            <div>
+              <p class="text-secondary"> <%= review.user.email %> </p>
+            <h5><%= review.content %></h5>
+            </div>
+              <h4> <%  review.rating.times do %>
+                    <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+                   <%end%> </h4>
+            </div>
+            <%end%>
+            <% else %>
+            <h3 class="text-secondary mt-4"> No reviews in this product yet. </h3>
+            <% end %>
       </div>
       <%= link_to products_path, class: "button btn btn-lg mb-3 cart mt-5" do %>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="">Add to cart</span>
         <%end%>
    </div>
-
 </div>
+
 <div class="col-4 p-3 mb-2 p-5 border rounded-4 review-container mt-5", style= "height: 30rem;">
   <div class="text-center">
   <h2> Add Review </h2>
@@ -43,10 +59,10 @@
 
 <div class="align-items-center p-4 gap-2 mb-3">
     <div class="flex-grow-1 fw-bold fs-5">
-      <%= f.input :content, label: "Write your thoughts", input_html: { class: 'form-control form-control-lg', placeholder: 'Review' } %>
+      <%= f.input :content, label: false, input_html: { class: 'form-control form-control-lg', placeholder: 'Write your thoughts' } %>
     </div>
     <div class="flex-grow-1 fw-bold fs-5 stars">
-      <%= f.input :rating, collection: (1..5).to_a, label: "Rate this product", input_html: { data: {controller: "star-rating"}, class: 'form-control form-control-lg my-4', placeholder: 'Add description', id:'stars' } %>
+      <%= f.input :rating, collection: (1..5), label: "Rate this product", input_html: { data: {controller: "star-rating"}, class: 'form-control form-control-lg my-4', placeholder: 'Add description', id:'stars' } %>
     </div>
     <div class="row g-2">
       <%= f.submit "Add review", class: 'btn btn-primary p-2 mt-4 w-100' %>

@@ -13,7 +13,9 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to product_path(@product)
     else
-      render "products/show", status: :unprocessable_entity
+      @reviews = @product.reviews
+      @average_rating = @product.reviews.average(:rating)&.round(2) || 0
+      render 'products/show', status: :unprocessable_entity
     end
   end
 

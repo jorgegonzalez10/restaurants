@@ -3,17 +3,17 @@ class Users::ProductsController < ApplicationController
 
   def index
     if params[:query].present?
-      @products = Product.search_products_by_name_price_or_discount(params[:query])
+      @products = Product.includes(:reviews).search_products_by_name_price_or_discount(params[:query])
     else
-    @products = Product.ordered
+    @products = Product.includes(:reviews).ordered
     end
   end
 
   def cards
     if params[:query].present?
-      @products = Product.search_products_by_name_price_or_discount(params[:query])
+      @products = Product.includes(:reviews).search_products_by_name_price_or_discount(params[:query])
     else
-    @products = Product.ordered
+    @products = Product.includes(:reviews).ordered
     end
   end
 
@@ -28,9 +28,7 @@ class Users::ProductsController < ApplicationController
     #@product.user = current_user
     @product = current_user.products.build(product_params)
     if @product.save
-
       redirect_to users_products_url, notice: "Product was successfully created."
-
     else
       render :new, status: :unprocessable_entity
     end
@@ -60,6 +58,6 @@ class Users::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :photo, :discount)
+    params.require(:product).permit(:name, :description, :price, :stock, :photo, :discount, :review)
   end
 end
