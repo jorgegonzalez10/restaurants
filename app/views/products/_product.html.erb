@@ -1,6 +1,9 @@
 
 <div class="grid-item position-relative bg-light card p-1 pt-2 mt-3 shadow" style="width: 18rem;">
   <div class="container">
+    <% if controller_path == 'products'%>
+     <%= link_to "Details", product_path(product), class:"btn btn-dark btn-sm mt-3 me-2 position-absolute px-3 end-0 rounded-5 fw-bold" %>
+    <% end %>
     <h5 class="btn btn-dark btn-sm mt-3 position-absolute px-3 end-4 rounded-5 fw-bold"><% if product.discount.present?  %><%= product.discount %>% OFF
         <%else %> 0% OFF
         <%end%></h5>

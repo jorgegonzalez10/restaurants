@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/products/owner', to: "products#owner"
-  resources :products
+  resources :products do
+    resources :reviews, only: [:create, :new, :show, :destroy, :index]
+  end
   namespace :users do
     get '/products/cards', to: "products#cards"
     resources :products

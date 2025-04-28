@@ -19,7 +19,7 @@
          <%= form_with url: products_path, method: :get, class: "d-flex ms-5" do %>
         <%= text_field_tag :query,
           params[:query],
-          class: "form-control-lg me-1",
+          class: "form-control me-1 search",
           placeholder: "Search"
         %>
         <%= submit_tag "Search", class: "btn btn-space border", style:"color: #ffffff;" %>
@@ -39,7 +39,7 @@
                   'aria-expanded': false
                 ) %>
 
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu dropdown-menu-end fs-4 fw-bold" aria-labelledby="navbarDropdown">
               <li><%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %></li>
               <li><%= link_to "My products", users_products_path, class: "dropdown-item" %></li>
               <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
