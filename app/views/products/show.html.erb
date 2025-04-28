@@ -35,17 +35,18 @@
    </div>
 
 </div>
-<div class="col-4 p-3 mb-2 p-5 text-center border rounded-4 review-container mt-5", style= "height: 30rem;">
-
+<div class="col-4 p-3 mb-2 p-5 border rounded-4 review-container mt-5", style= "height: 30rem;">
+  <div class="text-center">
   <h2> Add Review </h2>
+  </div>
   <%= simple_form_for [@product, @review] do |f| %>
 
 <div class="align-items-center p-4 gap-2 mb-3">
     <div class="flex-grow-1 fw-bold fs-5">
       <%= f.input :content, label: "Write your thoughts", input_html: { class: 'form-control form-control-lg', placeholder: 'Review' } %>
     </div>
-    <div class="flex-grow-1 fw-bold fs-5">
-      <%= f.input :rating, collection: (1..5).to_a, label: "Rate this product", input_html: { class: 'form-control form-control-lg', placeholder: 'Add description' } %>
+    <div class="flex-grow-1 fw-bold fs-5 stars">
+      <%= f.input :rating, collection: (1..5).to_a, label: "Rate this product", input_html: { data: {controller: "star-rating"}, class: 'form-control form-control-lg my-4', placeholder: 'Add description', id:'stars' } %>
     </div>
     <div class="row g-2">
       <%= f.submit "Add review", class: 'btn btn-primary p-2 mt-4 w-100' %>
