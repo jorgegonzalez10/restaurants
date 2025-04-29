@@ -24,26 +24,40 @@
     </div>
    </div>
    <h3 class="text-body-secondary description mb-4"> <%= @product.description %> </h3>
+    <%= turbo_frame_tag "reviews" do %>
     <div class="d-flex align-items-center">
-    <h1 class=""> Reviews </h1><h5 class="mt-2 ms-2">(<%= (@reviews.count) %>)</h5>
+    <h1 class=""> Reviews </h1><h5 class="mt-2 ms-2">(<%= (@reviews.count) %>/<%= @product.reviews.count %>)</h5>
     </div>
       <div>
+
         <% if @reviews.present? %>
           <% @reviews.each do |review| %>
-          <div class="d-flex p-3 mt-2 border rounded-3 align-items-center justify-content-between" id="review-div">
+          <div class="d-flex p-3 mt-2 border rounded-3 align-items-center justify-content-between review-div" id="review_<%= review.id %>">
             <div>
               <p class="text-secondary"> <%= review.user.email %> </p>
             <h5><%= review.content %></h5>
             </div>
+            <div class="d-flex">
               <h4> <%  review.rating.times do %>
                     <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
                    <%end%> </h4>
+                   <% if current_user == review.user %>
+                   <%= link_to product_review_path(@product, review),
+                        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                        class: "btn btn-lg"  do %>
+                        <i class="fa-solid fa-trash" style="color:rgb(228, 29, 29);"></i>
+                        <% end %>
+                    <%end%>
+            </div>
             </div>
             <%end%>
+            <div class="pagy"><%== pagy_bootstrap_nav(@pagy) if @product.reviews.count >= 4 %></div>
             <% else %>
             <h3 class="text-secondary mt-4"> No reviews in this product yet. </h3>
             <% end %>
-      </div>
+
+          </div>
+         <%end%>
       <%= link_to products_path, class: "button btn btn-lg mb-3 cart mt-5" do %>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="">Add to cart</span>

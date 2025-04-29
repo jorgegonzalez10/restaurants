@@ -11,7 +11,11 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @review = Review.new
-    @reviews = @product.reviews.order(created_at: :desc)
+    @pagy, @reviews = pagy(@product.reviews.order(created_at: :desc))
     @average_rating = @product.reviews.average(:rating)&.round(2) || 0
+    respond_to do |format|
+      format.html
+      format.turbo_stream 
+    end
   end
 end
