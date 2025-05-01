@@ -28,7 +28,10 @@ class Users::ProductsController < ApplicationController
     #@product.user = current_user
     @product = current_user.products.build(product_params)
     if @product.save
-      redirect_to users_products_url, notice: "Product was successfully created."
+      respond_to do |format|
+       format.html { redirect_to users_products_url, notice: "Product was successfully created." }
+       format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end

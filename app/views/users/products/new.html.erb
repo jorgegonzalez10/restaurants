@@ -1,4 +1,9 @@
 <div class="container bg-white shadow mt-5 border rounded-4">
   <h1 class="my-4 mx-3">Add New Product</h1>
- <%= render 'form' %>
+  <%= turbo_frame_tag :new_product do %>
+    <%= render 'form' %>
+  <% end %>
 </div>
+
+<%# <turbo-frame id="new_product">
+  </turbo-frame> %>
