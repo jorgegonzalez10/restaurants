@@ -1,14 +1,14 @@
       <%= turbo_frame_tag product do %>
         <td><%= image_tag product.photo, class:"avatar" %></td>
-        <td class="fw-bold "><%= product.name %></td>
-        <td class="fw-bold"><%= product.price %></td>
-        <td class="fw-bold"><%= product.stock %></td>
-        <td class="fw-bold"> <%  product.discount.present? ? product.discount : '' %></td>
-        <td <% average_rating = product.reviews.average(:rating)&.round(2) || 0 %>>
-          <% average_rating.to_i.times do %>
-            <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
-          <%end%>
-        </td>
+          <td class="fw-bold "><%= product.name %></td>
+          <td class="fw-bold"><%= product.price %></td>
+          <td class="fw-bold"><%= product.stock %></td>
+          <td class="fw-bold"> <%  product.discount.present? ? product.discount : '' %></td>
+          <td <% average_rating = product.reviews.average(:rating)&.round(2) || 0 %>>
+            <% average_rating.to_i.times do %>
+              <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+            <%end%>
+          </td>
         <td>
           <div class="d-flex">
             <%= link_to "#", class: "btn btn-lg", data: { bs_toggle: "modal", bs_target: "#productModal-#{product.id}" } do %>
