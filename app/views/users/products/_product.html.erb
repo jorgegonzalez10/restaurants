@@ -1,5 +1,5 @@
       <%= turbo_frame_tag product do %>
-        <td><%= image_tag product.photo, class:"avatar" %></td>
+        <td ><%= image_tag product.photo.attached? ? product.photo : 'no-image.jpg', class:'avatar'  %></td>
           <td class="fw-bold "><%= product.name %></td>
           <td class="fw-bold"><%= product.price %></td>
           <td class="fw-bold"><%= product.stock %></td>
