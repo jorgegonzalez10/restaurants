@@ -30,15 +30,16 @@
       </tr>
     </thead>
     <tbody class="table-list">
-
-      <% @products.each do |product| %>
+      <tr id="products"> </tr>
+        <% @products.each do |product| %>
           <% if controller_path == 'users/products' && product.user == current_user %>
-            <tr>
+         
+           <tr>
               <%= render 'users/products/product', product: product %>
             </tr>
+
           <% end %>
-      <%end%>
-      <%= turbo_frame_tag "products"  %>
+        <%end%>
     </tbody>
   </table>
 
