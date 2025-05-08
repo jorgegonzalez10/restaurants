@@ -33,8 +33,8 @@
       <tr id="products"> </tr>
         <% @products.each do |product| %>
           <% if controller_path == 'users/products' && product.user == current_user %>
-         
-           <tr>
+
+           <tr id="<%= dom_id(product) %>">
               <%= render 'users/products/product', product: product %>
             </tr>
 
