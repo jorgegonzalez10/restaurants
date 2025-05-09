@@ -10,7 +10,7 @@
         <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }, placeholder: "bob@gmail.com"%>
+                input_html: { autocomplete: "email", type: "email" }, placeholder: "bob@gmail.com"%>
         <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

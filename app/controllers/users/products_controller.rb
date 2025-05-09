@@ -13,7 +13,7 @@ class Users::ProductsController < ApplicationController
     if params[:query].present?
       @products = Product.includes(:reviews).search_products_by_name_price_or_discount(params[:query])
     else
-    @products = Product.includes(:reviews).ordered
+      @products = Product.includes(:reviews).ordered
     end
   end
 

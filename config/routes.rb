@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  resources :cart, only: [:create, :show]
+  resources :line_items, only: [:create, :destroy, :show]
+  resources :orders, only: [:create, :destroy, :show] 
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

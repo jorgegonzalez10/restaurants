@@ -30,7 +30,7 @@
     <h6 class="rating"><%= average_rating%></h6>
     </div>
     <% unless controller_path == 'users/products' && product.user == current_user %>
-      <%= link_to product_path(product), class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3" do %>
+      <%= button_to line_items_path(product_id: product), class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3" do %>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="">Add to cart</span>
       <%end%>

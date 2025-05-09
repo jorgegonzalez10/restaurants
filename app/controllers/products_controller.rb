@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     if params[:query].present?
       @products = Product.includes(:reviews).search_products_by_name_price_or_discount(params[:query])
     else
-    @products = Product.ordered.includes(:reviews)
+      @products = Product.ordered.includes(:reviews)
     end
   end
 
@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @average_rating = @product.reviews.average(:rating)&.round(2) || 0
     respond_to do |format|
       format.html
-      format.turbo_stream 
+      format.turbo_stream
     end
   end
 end
