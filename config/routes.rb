@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'carts/show'
   devise_for :users
   get '/products/owner', to: "products#owner"
   resources :products do
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :cart, only: [:create, :show]
   resources :line_items, only: [:create, :destroy, :show]
-  resources :orders, only: [:create, :destroy, :show] 
+  resources :orders, only: [:create, :destroy, :show]
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

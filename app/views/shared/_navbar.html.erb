@@ -45,6 +45,13 @@
               <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
           </li>
+          <div>
+
+            <%= link_to carts_show_path(session[:cart_id]), class:"button btn btn-dark py-2 border" do %>
+              <i class="fa-solid fa-cart-shopping" style="width: 50px;"></i>
+              <%= render "carts/cart_count" %>
+            <%end%>
+            </div>
         <% else %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link fw-bold", style:"color: #ffffff;" %>
@@ -55,13 +62,7 @@
         <% end %>
       </ul>
     </div>
-    <div>
-      <%= link_to root_path, class:"button btn btn-dark btn-lg border" do %>
-        <i class="fa-solid fa-cart-shopping"></i>
 
-        <span >  </span>
-
-      <%end%>
     </div>
-  </div>
+
 </nav>

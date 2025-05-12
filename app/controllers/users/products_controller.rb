@@ -64,3 +64,4 @@ class Users::ProductsController < ApplicationController
     params.require(:product).permit(:name, :description, :price, :stock, :photo, :discount, :review)
   end
 end
+

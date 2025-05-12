@@ -58,7 +58,7 @@
 
           </div>
          <%end%>
-      <%= link_to products_path, class: "button btn btn-lg mb-3 cart mt-5" do %>
+      <%= button_to line_items_path(product_id: @product), method: :post, form: { data: { turbo: true } }, class: "button btn btn-lg mb-3 cart mt-5" do %>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="">Add to cart</span>
         <%end%>
