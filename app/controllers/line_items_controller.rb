@@ -20,7 +20,29 @@ class LineItemsController < ApplicationController
   def new
   end
 
-  
+  def increment
+    @line_item = LineItem.find(params[:id])
+    @line_item.increment!(:quantity)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to carts_show_path(@line_item.cart) }
+    end
+  end
+
+  def decrement
+    @line_item = LineItem.find(params[:id])
+    if @line_item.quantity > 1
+      @line_item.decrement!(:quantity)
+    else
+      @line_item.destroy
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to carts_show_path(@line_item.cart) }
+    end
+  end
 
   def destroy
     @line_item = LineItem.find(params[:id])
