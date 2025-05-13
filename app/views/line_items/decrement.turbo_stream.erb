@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "cart_item_#{@line_item.id}" do %>
+  <%= render partial: "line_items/item", locals: { line_item: @line_item } %>
+<% end %>
+
+<%= turbo_stream.replace "cart_count" do %>
+  <span><%= @line_item.cart.line_items.sum(:quantity) %></span>
+<% end %>

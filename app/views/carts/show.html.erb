@@ -11,8 +11,8 @@
               <% else %>
                 <%= image_tag 'no-image.jpg', class:"img-fluid rounded me-5", style:"width: 130px; height: 130px;"%>
               <% end %>
-              <strong class="fw-5 fs-5"><%= line_item.product.name %> - <%= line_item.quantity > 1 ? number_to_currency(line_item.total_price) : number_to_currency(line_item.product.price) %> (x<%= line_item.quantity %>)</strong>
-              <%= button_to 'Remove', line_item_path(line_item), method: :delete, class: 'btn btn-danger btn-sm float-end rounded-3' %>
+              <strong class="fw-5 fs-5"><%= line_item.product.name %> - <%= line_item.quantity > 1 ? number_to_currency(line_item.total_price) : number_to_currency(line_item.product.price) %></strong>
+                <%= render "line_items/item", line_item: line_item%>
             </li>
           <% end %>
         </ul>
