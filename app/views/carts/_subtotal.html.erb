@@ -1,0 +1,3 @@
+<div id="subtotal_<%=line_item.id%>" >
+ <strong class="fw-5 fs-5"><%= line_item.product.name %> - <%=number_to_currency(line_item.price)%> <%= line_item.quantity > 1 ? "| Subtotal(#{line_item.quantity}): #{number_to_currency(line_item.product.price * line_item.quantity)}" : "" %></strong>
+</div>
