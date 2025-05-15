@@ -2,6 +2,5 @@
   <%= render partial: "line_items/item", locals: { line_item: @line_item } %>
 <% end %>
 
-<%= turbo_stream.replace "cart_count" do %>
-  <span><%= @line_item.cart.line_items.sum(:quantity) %></span>
-<% end %>
+<%= turbo_stream.replace "total", partial: 'carts/total',  locals: { cart: @cart } %>
+<%= turbo_stream.replace "cart_count", partial:'carts/cart_count', locals: {cart: @cart} %>

@@ -18,7 +18,9 @@
         </ul>
         <hr>
         <div class="container d-flex justify-content-between">
-          <strong><p class="text-end fw-3 fs-3">Total: <%= number_to_currency(@cart.total_price) %></p></strong>
+          <strong><p class="text-end fw-3 fs-3">Total:
+            <%= render 'total', cart: @cart %>
+            </p></strong>
         </div>
       <% else %>
         <p>Your cart is empty.</p>
@@ -27,6 +29,6 @@
   </div>
 
   <div class="fw-3 fs-3 btn btn-success btn-lg btn-block rounded-bottom-4 p-2">
-    <%#= link_to 'Checkout', payment_cart_path(@cart), class: "text-decoration-none text-white" %>
+    <%= link_to 'Checkout', carts_show_path(session[:cart_id]), class: "text-decoration-none text-white" %>
   </div>
 </div>

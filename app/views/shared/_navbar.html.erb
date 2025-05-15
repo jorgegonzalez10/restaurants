@@ -47,7 +47,7 @@
           </li>
           <div>
 
-            <%= link_to carts_show_path(session[:cart_id]), class:"button btn btn-dark py-2 border" do %>
+            <%= link_to cart_path(session[:cart_id]), class:"button btn btn-dark py-2 border" do %>
               <i class="fa-solid fa-cart-shopping" style="width: 50px;"></i>
               <%= render "carts/cart_count" %>
             <%end%>
