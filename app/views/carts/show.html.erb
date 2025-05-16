@@ -6,15 +6,15 @@
         <ul class="list-group">
           <% @cart.line_items.each do |line_item| %>
             <li class="list-group-item rounded-4">
-<div class="d-flex align-items-center gap-5">
+            <div class="d-flex align-items-center gap-5">
               <% if line_item.product.photo.attached? %>
                 <%= image_tag url_for(line_item.product.photo), class: "card-img-top rounded-top", style: "width: 130px; height: 130px;", alt: line_item.product.name %>
               <% else %>
                 <%= image_tag 'no-image.jpg', class:"img-fluid rounded me-5", style:"width: 130px; height: 130px;"%>
               <% end %>
               <%= render "subtotal", line_item: line_item %>
-                <div class="ms-auto"> <%= render "line_items/item", line_item: line_item%></div>
-                </div>
+              <div class="ms-auto"> <%= render "line_items/item", line_item: line_item%></div>
+            </div>
             </li>
           <% end %>
         </ul>
@@ -31,6 +31,7 @@
   </div>
 
   <div class="fw-3 fs-3 btn btn-success btn-lg btn-block rounded-bottom-4 p-2">
-    <%= link_to 'Checkout', carts_show_path(session[:cart_id]), class: "text-decoration-none text-white" %>
+    <%= button_to 'Checkout', orders_path, class: "text-decoration-none text-white" %>
   </div>
 </div>
+<%= console %>

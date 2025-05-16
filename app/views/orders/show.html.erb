@@ -1,0 +1,17 @@
+<div class="container border">
+  <%= simple_form_for @order do |f| %>
+  <%= f.input :name, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'Name' } %>
+  <%= f.input :address, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'address' } %>
+  <%= f.date_field :date, start_year: Date.today.year, class: "form-control form-control-lg" %>
+  <%= f.submit 'Pagar'  %>
+  <% end %>
+
+  <% @order.line_items.each do |item| %>
+     <% if item.product.photo.attached? %>
+                <%= image_tag url_for(item.product.photo), class: "card-img-top rounded-top", style: "width: 130px; height: 130px;", alt: item.product.name %>
+              <% else %>
+                <%= image_tag 'no-image.jpg', class:"img-fluid rounded me-5", style:"width: 130px; height: 130px;"%>
+              <% end %>
+  <% end %>
+  <%= console %>
+</div>

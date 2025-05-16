@@ -3,21 +3,21 @@ Rails.application.routes.draw do
   devise_for :users
   get '/products/owner', to: "products#owner"
   resources :products do
-    resources :reviews, only: [:create, :new, :show, :destroy, :index]
+    resources :reviews, only: %i[create new show destroy index]
   end
   namespace :users do
     get '/products/cards', to: "products#cards"
     resources :products
   end
 
-  resources :carts, only: [:create, :show]
-  resources :line_items, only: [:create, :destroy, :show] do
+  resources :carts, only: %i[create show]
+  resources :line_items, only: %i[create destroy show] do
     member do
       patch :increment
       patch :decrement
     end
   end
-  resources :orders, only: [:create, :destroy, :show]
+  resources :orders, only: %i[create destroy show edit]
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
