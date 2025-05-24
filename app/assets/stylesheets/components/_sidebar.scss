@@ -1,0 +1,34 @@
+.sidebar-bg {
+  width: 290px;
+  background-color: #212529;
+  height: calc(100vh);
+  overflow-y: auto;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  z-index: 999;
+}
+
+.with-sidebar {
+  margin-left: 220px;
+}
+
+.main-content {
+  padding: 0rem;
+}
+
+.sidebar-bg h6 {
+  color: white;
+}
+
+.sidebar-bg .list-group-item {
+  background-color: transparent;
+  border-radius: 0.5rem !important;
+  border: none;
+  color: white;
+}
+
+.sidebar-bg .list-group-item:hover {
+  background-color: #FFCBCB !important;
+  color: #102C57 !important;
+}

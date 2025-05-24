@@ -1,0 +1,25 @@
+<div class="container p-3 mt-5">
+  <div class="grid text-center">
+    <div class="d-flex position-relative ">
+      <%= form_with url: users_products_cards_path, method: :get, class: "d-flex justify-content-center" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control-lg me-1",
+          placeholder: "Search"%>
+        <%= submit_tag "Search", class: " button btn border " %>
+      <% end %>
+      <%=link_to "Add new product", new_users_product_path, class:"btn btn-dark btn-lg mt-3 position-absolute end-0 px-3 rounded-5 fw-bold", id:"new"%>
+    </div>
+    <div class="btn-group my-4 g-col-6 g-col-md-4">
+      <%= link_to "List", users_products_path, class:"btn btn-lg buttongroup"%>
+      <%= link_to "Cards", users_products_cards_path, class:"btn btn-lg active buttongroup", id:"active"%>
+    </div>
+  </div>
+  <div class="grid-container">
+    <% @products.each do |product| %>
+      <% if controller_path == 'users/products' && product.user == current_user %>
+      <%= render "products/product", product: product %>
+      <%end%>
+    <%end%>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container-fluid d-flex" id="container-show">
+  <div class="col-sm-8 p-3">
+    <div class="container-fluid mt-5 px-5 p-4 bg-light text-black shadow border-success rounded-top-4">
+      <h1><strong class="f2-5">Your Order <i class="fa-solid fa-cart-plus fa-md mb-3" style="color:rgb(238, 226, 226);"></i></strong></h1>
+      <ul class="list-group">
+        <% @order.line_items.each do |item| %>
+          <li class="list-group-item rounded-4">
+            <div class="d-flex align-items-center gap-5">
+              <% if item.product.photo.attached? %>
+                <%= image_tag url_for(item.product.photo), class: "card-img-top rounded-top", style: "width: 130px; height: 130px;", alt: item.product.name %>
+              <% else %>
+                <%= image_tag 'no-image.jpg', class:"img-fluid rounded me-5", style:"width: 130px; height: 130px;"%>
+              <% end %>
+              <%= render "carts/subtotal", line_item: item %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <hr>
+
+      <div class="container bg-success rounded-3 p-3 me-auto">
+        <strong>
+          <p class="text-end fw-3 fs-3">Total:
+            <%= render 'carts/total', cart: @cart %>
+          </p>
+        </strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4 p-3 mb-2 p-5 border rounded-4 review-container mt-5" style="height: 30rem;">
+    <div class="text-center">
+      <h2>Details</h2>
+    </div>
+    <%= simple_form_for @order, url: payment_order_path(@order), method: :post, data: {turbo: :false} do |f| %>
+      <div class="align-items-center p-4 gap-2 mb-3">
+        <div class="flex-grow-1 fw-bold fs-5">
+          <%= f.input :name, label: false, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'Name' } %>
+        </div>
+        <div class="flex-grow-1 fw-bold fs-5">
+          <%= f.input :address, label: false, input_html: { class: 'form-control form-control-lg rounded-pill', placeholder: 'Address' } %>
+        </div>
+        <div class="flex-grow-1 fw-bold fs-5">
+          <%= f.date_field :date, start_year: Date.today.year, class: "form-control form-control-lg my-4" %>
+        </div>
+          <%= f.submit 'Pay', class: 'btn btn-success w-100 mt-3 fs-5 fw-bold' %>
+    <% end %>
+      </div>
+  </div>
+</div>
+<%= console %>

@@ -1,0 +1,16 @@
+.navbar {
+  background-color: #212529;
+  position: sticky !important;
+  top: 0;
+  z-index: 9999 !important;
+  height: 100px;
+  overflow: visible;
+}
+
+.container-fluid {
+  overflow: visible !important;
+}
+ .search{
+  width: 35rem;
+  margin-left: 20rem;
+ }

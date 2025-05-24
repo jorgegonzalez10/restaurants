@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                  :bigint           not null, primary key
+#  date                :date
+#  name                :string
+#  address             :string
+#  total               :float
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  checkout_session_id :string
+#  paid                :boolean          default(FALSE)
+#  user_id             :bigint           not null
+#
+
+one:
+  date: 2025-05-07
+  name: MyString
+  address: MyString
+  total: 1.5
+
+two:
+  date: 2025-05-07
+  name: MyString
+  address: MyString
+  total: 1.5

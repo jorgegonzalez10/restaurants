@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "cart_item_#{@line_item.id}" do %>
+  <%= render partial: "line_items/item", locals: { line_item: @line_item } %>
+<% end %>
+<%#= turbo_stream.replace(@line_item) %>
+<%= turbo_stream.replace "total", partial: 'carts/total',  locals: { cart: @cart } %>
+<%= turbo_stream.replace "cart_count", partial:'carts/cart_count', locals: {cart: @cart} %>
+<%= turbo_stream.replace "subtotal_#{@line_item.id}" do %>
+  <%= render partial:'carts/subtotal', locals: {line_item: @line_item } %>
+<% end %>

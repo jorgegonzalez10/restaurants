@@ -1,0 +1,5 @@
+<%= turbo_frame_tag 'cart_count' do %>
+  <% if @cart.line_items.sum(:quantity) > 0 %>
+    <span class="fs-5"><%= @cart.line_items.sum(:quantity) %></span>
+  <% end %>
+<% end %>

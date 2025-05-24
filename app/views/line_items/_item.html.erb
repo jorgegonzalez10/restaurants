@@ -1,0 +1,13 @@
+<div id="cart_item_<%= line_item.id %>", class="d-flex float-end align-items-center mt-4">
+  <% if line_item.quantity > 1 %>
+    <%= button_to decrement_line_item_path(line_item), method: :patch, class:"btn btn-danger" do %>
+    <i class="fa-solid fa-minus"></i>
+    <% end %>
+  <% else %>
+    <%= button_to 'Remove', line_item_path(line_item), method: :delete, class: 'btn btn-danger' %>
+    <% end %>
+  <span class="fs-5 border p-3 mx-3"> <%= line_item.quantity %> </span>
+  <%= button_to increment_line_item_path(line_item), method: :patch, class:"btn btn-success" do %>
+  <i class="fa-solid fa-plus"></i>
+  <% end %>
+</div>

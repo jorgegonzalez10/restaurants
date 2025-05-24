@@ -1,0 +1,6 @@
+<div class="container mt-5">
+  <%= link_to 'Create a new product', new_product_path,  class: "btn btn-primary mt-4" if  params[:action] == 'owner' %>
+  <div class="grid-container">
+    <%= render @products %>
+  </div>
+ </div>

@@ -1,0 +1,29 @@
+@import "card";
+@import "button";
+@import "navbar";
+@import "avatar";
+@import "table";
+@import "container";
+@import "home";
+@import "cart";
+@import "sidebar";
+
+.discount {
+  text-decoration: line-through;
+ }
+
+ .rating {
+  background-color: yellow;
+  color: #212529;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+  border-radius: 0.375rem;
+ }
+
+ body {
+  background-color: rgb(254, 254, 252);
+ }

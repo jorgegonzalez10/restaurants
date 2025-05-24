@@ -1,0 +1,26 @@
+
+        <td ><%= image_tag product.photo.attached? ? product.photo : 'no-image.jpg', class:'avatar'  %></td>
+          <td class="fw-bold "><%= product.name %></td>
+          <td class="fw-bold"><%= product.price %></td>
+          <td class="fw-bold"><%= product.stock %></td>
+          <td class="fw-bold"> <%  product.discount.present? ? product.discount : '' %></td>
+          <td <% average_rating = product.reviews.average(:rating)&.round(2) || 0 %>>
+            <% average_rating.to_i.times do %>
+              <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+            <%end%>
+          </td>
+        <td>
+          <div class="d-flex">
+            <%= link_to "#", class: "btn btn-lg", data: { bs_toggle: "modal", bs_target: "#productModal-#{product.id}" } do %>
+              <i class="fas fa-eye icono icono__blue" style="color: rgb(55, 106, 194);"></i>
+            <% end %>
+            <%= link_to edit_users_product_path(product), class:"btn btn-lg" do %>
+                  <i class="fa-solid fa-pen-to-square" style="color:rgb(55, 106, 194);"></i>
+            <% end %>
+            <%= button_to users_product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-lg" do %>
+                  <i class="fa-solid fa-trash" style="color:rgb(228, 29, 29);"></i>
+            <% end %>
+          </div>
+        </td>
+
+    <%= render 'modal', product: product %>

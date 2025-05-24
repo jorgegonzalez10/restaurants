@@ -1,0 +1,3 @@
+<%= turbo_frame_tag 'total' do %>
+  <%= number_to_currency(cart.line_items.sum {|item| item.quantity * item.price}) %>
+<% end %>

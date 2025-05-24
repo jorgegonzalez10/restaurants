@@ -1,0 +1,88 @@
+<div class="container-fluid mt-4 d-flex" id="container-show">
+<div class="col-sm-8 p-3">
+  <h5 class="btn btn-dark btn-md mt-3 position-absolute px-3 end-4 rounded-5 fw-bold discount1"><% if @product.discount.present?  %><%= @product.discount %>% OFF
+    <%else %> 0% OFF
+    <%end%></h5>
+  <% if @product.photo.attached? %>
+    <%= image_tag @product.photo, class:"card-img-top mb-2 rounded-4 image", style:" height:35rem" %>
+  <%else%>
+    <%= image_tag 'no-image.jpg', class:"card-img-top mb-2 rounded-4 image", style:" height:35rem" %>
+  <%end%>
+  <div class="container">
+   <div class="d-flex justify-content-between mt-3 mb-4">
+    <div class="d-flex">
+    <h1 class="me-4"><%= @product.name %></h1>
+    <%  @average_rating.round.to_i.times do %>
+    <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+    <%end%>
+    <h6 class="rating"><%=@average_rating%></h6>
+    </div>
+    <div class="d-flex me-5">
+    <h1 class="text-body-secondary">$<%= number_with_precision(@product.price, precision: 0) %></h1>  <h4 class="discount mt-3 ms-2 text-body-secondary "><% if @product.discount.present? %>$<%= number_with_precision(@product.price * @product.discount/100, precision: 0 )%>
+    <% else %>
+    <%end%></h4>
+    </div>
+   </div>
+   <h3 class="text-body-secondary description mb-4"> <%= @product.description %> </h3>
+    <%= turbo_frame_tag "reviews" do %>
+    <div class="d-flex align-items-center">
+    <h1 class=""> Reviews </h1><h5 class="mt-2 ms-2">(<%= (@reviews.count) %>/<%= @product.reviews.count %>)</h5>
+    </div>
+      <div>
+
+        <% if @reviews.present? %>
+          <% @reviews.each do |review| %>
+          <div class="d-flex p-3 mt-2 border rounded-3 align-items-center justify-content-between review-div" id="review_<%= review.id %>">
+            <div>
+              <p class="text-secondary"> <%= review.user.email %> </p>
+            <h5><%= review.content %></h5>
+            </div>
+            <div class="d-flex">
+              <h4> <%  review.rating.times do %>
+                    <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+                   <%end%> </h4>
+                   <% if current_user == review.user %>
+                   <%= link_to product_review_path(@product, review),
+                        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                        class: "btn btn-lg"  do %>
+                        <i class="fa-solid fa-trash" style="color:rgb(228, 29, 29);"></i>
+                        <% end %>
+                    <%end%>
+            </div>
+            </div>
+            <%end%>
+            <div class="pagy"><%== pagy_bootstrap_nav(@pagy) if @product.reviews.count >= 4 %></div>
+            <% else %>
+            <h3 class="text-secondary mt-4"> No reviews in this product yet. </h3>
+            <% end %>
+
+          </div>
+         <%end%>
+      <%= button_to line_items_path(product_id: @product), method: :post, form: { data: { turbo: true } }, class: "button btn btn-lg mb-3 cart mt-5" do %>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="">Add to cart</span>
+        <%end%>
+   </div>
+</div>
+
+<div class="col-4 p-3 mb-2 p-5 border rounded-4 review-container mt-5", style= "height: 30rem;">
+  <div class="text-center">
+  <h2> Add Review </h2>
+  </div>
+  <%= simple_form_for [@product, @review] do |f| %>
+
+<div class="align-items-center p-4 gap-2 mb-3">
+    <div class="flex-grow-1 fw-bold fs-5">
+      <%= f.input :content, label: false, input_html: { class: 'form-control form-control-lg', placeholder: 'Write your thoughts' } %>
+    </div>
+    <div class="flex-grow-1 fw-bold fs-5 stars">
+      <%= f.input :rating, collection: (1..5), label: "Rate this product", input_html: { data: {controller: "star-rating"}, class: 'form-control form-control-lg my-4', placeholder: 'Add description', id:'stars' } %>
+    </div>
+    <div class="row g-2">
+      <%= f.submit "Add review", class: 'btn btn-primary p-2 mt-4 w-100' %>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+</div>

@@ -1,0 +1,46 @@
+
+<div class="grid-item position-relative bg-light card p-1 pt-2 mt-3 shadow" style="width: 18rem;">
+  <div class="container">
+    <% if controller_path == 'products' || controller_path == 'pages' %>
+     <%= link_to "Details", product_path(product), class:"btn btn-dark btn-sm mt-3 me-2 position-absolute px-3 end-0 rounded-5 fw-bold" %>
+    <% end %>
+    <h5 class="btn btn-dark btn-sm mt-3 position-absolute px-3 end-4 rounded-5 fw-bold"><% if product.discount.present?  %><%= product.discount %>% OFF
+        <%else %> 0% OFF
+        <%end%></h5>
+      <% if controller_path == 'users/products' && product.user == current_user %>
+        <%= button_to "Remove", users_product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm position-absolute top-0 end-0" %>
+      <% end %>
+<% if product.photo.attached? %>
+    <%= image_tag product.photo, class:"card-img-top mt-2 mb-2 rounded-4" %>
+  <%else%>
+    <%= image_tag 'no-image.jpg', class:"card-img-top mb-3" %>
+   <%end%>
+  <div class="card-body">
+    <div class= "d-flex justify-content-between">
+    <h5 class="card-subtitle text-body-secondary ms-0"> <%= truncate(product.name, length: 20) %></h5>
+    </div>
+    <div class="d-flex ">
+    <strong><h3 class="card-title mt-2 mb-2 fw-bold">$<%= number_with_precision(product.price, precision: 0) %></h3></strong>   <h6 class="discount mt-3 ms-1 me-3"><% if product.discount.present? %>$<%= number_with_precision(product.price * product.discount/100, precision: 0 )%>
+    <%else%>
+    <%end%></h6>
+    <% average_rating = product.reviews.average(:rating)&.round(2) || 0 %>
+    <%  average_rating.round.to_i.times do %>
+    <i class="fa-solid fa-star mt-3" style="color: #FFD43B;"></i>
+    <%end%>
+    <h6 class="rating"><%= average_rating%></h6>
+    </div>
+    <% unless controller_path == 'users/products' && product.user == current_user %>
+      <%= button_to line_items_path(product_id: product), method: :post, class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3" do %>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="">Add to cart</span>
+      <%end%>
+      <%else%>
+      <%= link_to "Edit", edit_users_product_path(product), class: "button btn btn-lg w-80 position-absolute bottom-0 start-0 end-0 mb-3 ms-3 me-3"%>
+    <%end%>
+
+
+  </div>
+</div>
+
+
+</div>

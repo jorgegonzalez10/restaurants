@@ -1,0 +1,31 @@
+.button {
+  background-color: #212529;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: medium;
+}
+
+.buttongroup {
+  background-color: #212529;
+  color: #ffffff;
+  width: 150px;
+}
+
+.buttongroup:hover{
+  background-color: #EFEEEA;
+}
+
+#active{
+  background-color: #EFEEEA;
+}
+
+#new{
+  width: 25%;
+}
+
+.cart{
+  width:90%;
+  margin-left: 5rem;
+}
+
+
