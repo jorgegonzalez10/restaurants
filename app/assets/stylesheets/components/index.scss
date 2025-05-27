@@ -27,3 +27,8 @@
  body {
   background-color: rgb(254, 254, 252);
  }
+
+ .catego:active {
+  background-color: rgb(228, 228, 234); /* Cambia el color de fondo al hacer clic */
+  color: white;
+ }

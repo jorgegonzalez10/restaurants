@@ -1,12 +1,28 @@
 <aside class="sidebar-bg">
   <div class="d-grid gap-2 p-3">
-       <p><%= link_to "Products", products_path, class:'btn button-home' %></p>
+
 
 
   </div>
 
-  <div class="p-3">
-    <h6 class="fw-bold mb-3 text-white">MENU</h6>
+  <div class="p-3 accordion button accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item ">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed button text-white fw-bold fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Categories <i class="fa-solid fa-arrows-up-down ms-3"></i>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body fs-4 fw-bold">
+        <ul class="list-unstyled">
+          <%= render partial: 'category', collection: @categories %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
 
     <div class="list-group border-0">
 
@@ -15,7 +31,15 @@
 </aside>
 
 <div class="container mt-5">
-  <h1>Products</h1>
+  <div class="d-flex justify-content-between align-items-center">
+  <h1>Products</h1>  <%= link_to products_path, data: { turbo_frame: "best" }, class: 'btn btn-outline-dark fw-bold' do %>
+      Best Offers
+    <% end %>
+    <%= link_to products_path, data: { turbo_frame: "best" }, class: 'btn btn-outline-dark fw-bold' do %>
+      Best Sellings
+    <% end %>
+    <div class="pagy bg-light"><%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %></div>
+  </div>
   <div class="row">
     <%= render @products %>
   </div>

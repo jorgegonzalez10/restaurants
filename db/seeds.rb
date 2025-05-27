@@ -1,6 +1,7 @@
 require 'open-uri'
 
 # Elimina datos previos
+LineItem.destroy_all
 Product.destroy_all
 Category.destroy_all
 User.destroy_all
@@ -18,7 +19,8 @@ categories = Category.create!([
   { name: 'clothes' },
   { name: 'games' },
   { name: 'sports' },
-  { name: 'books' }
+  { name: 'books' },
+  { name: 'furniture'}
 ])
 
 # Datos de productos
@@ -69,6 +71,7 @@ users.each do |user|
       price: rand(150.0..1200.0).round(2),
       stock: rand(5..30),
       status: true,
+      discount: rand(0..40),
       description: "Producto de alta calidad: #{product_info[:name]}",
       user: user,
       category_id: categories.sample.id # Asigna una categoría aleatoria
@@ -92,19 +95,27 @@ require 'json'
 url = 'https://api.escuelajs.co/api/v1/products'
 html_document = URI.open(url).read
 products = JSON.parse(html_document)
-product_platzi = products.first
+products.first(49).each do |product_platzi|
+  next if product_platzi['images'].empty? || !product_platzi['images'][2].is_a?(String)
 
-product = Product.create(
-  name: product_platzi['title'],
-  price: product_platzi['price'],
-  stock: rand(0..100),
-  status: [true, false].sample,
-  description: product_platzi['description'],
-  user: users.sample,
-  discount: rand(0..40),
-  category: categories.sample,
-)
-file_image = URI.parse(product_platzi['images'][2]).open
-product.photo.attach(io: file_image , filename: product.name, content_type: 'image/jpeg')
-product.save
-p product_platzi['images'][2]
+  product = Product.create(
+    name: product_platzi['title'],
+    price: product_platzi['price'],
+    stock: rand(0..100),
+    status: [true, false].sample,
+    description: product_platzi['description'],
+    user: users.sample,
+    discount: rand(0..40),
+    category: categories.sample,
+  )
+
+  begin
+    file_image = URI.parse(product_platzi['images'][2]).open
+    product.photo.attach(io: file_image, filename: product.name, content_type: 'image/jpeg')
+    product.save
+  rescue => e
+    puts "❌ Error al descargar imagen de #{product.name}: #{e.message}"
+  end
+
+  p product_platzi['images'][2]
+end

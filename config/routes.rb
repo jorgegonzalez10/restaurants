@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'carts/show'
   devise_for :users
   get '/products/owner', to: "products#owner"
+  get '/products/best', to: "products#best"
   resources :products do
     resources :reviews, only: %i[create new show destroy index]
   end
