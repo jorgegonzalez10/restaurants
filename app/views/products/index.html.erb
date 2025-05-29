@@ -35,6 +35,17 @@
                            placeholder: "max price",
                            onChange: 'this.form.requestSubmit()',
                            value: params[:max_price] %> </div>
+      <div class=>
+        <%= form.select :order_by,
+            options_for_select([
+            ["Newest", "Newest"],
+            ["Expensive", "Expensive"],
+            ["Cheapest", "Cheapest"]
+            ], params[:order_by]),
+            {}, 
+            class: "form-select form-select-lg my-5",
+            onchange: 'this.form.requestSubmit()' %>
+      </div>
     <% end %>
   </div>
 </div>
