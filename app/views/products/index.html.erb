@@ -3,7 +3,7 @@
 
 
 
-  </div>
+
 
   <div class="p-3 accordion button accordion-flush" id="accordionFlushExample">
   <div class="accordion-item ">
@@ -22,24 +22,38 @@
   </div>
 </div>
 
-    </div>
-
-    <div class="list-group border-0">
-
-    </div>
+  <div class="grid text-center m-2">
+    <h3 class="text-white fw-bold mt-1 mb-3 ">Price </h3>
+    <%= form_with url: products_path, method: :get do |form| %>
+     <div class="g-col-6"> <%= form.number_field :min_price,
+                           class:" form-control form-control-lg rounded-pill mb-3",
+                           placeholder: "min price",
+                           onChange: 'this.form.requestSubmit()',
+                           value: params[:min_price] %> </div>
+     <div class="g-col-6"> <%= form.number_field :max_price,
+                           class:" form-control form-control-lg rounded-pill",
+                           placeholder: "max price",
+                           onChange: 'this.form.requestSubmit()',
+                           value: params[:max_price] %> </div>
+    <% end %>
   </div>
+</div>
 </aside>
 
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center">
-  <h1>Products</h1>  <%= link_to products_path, data: { turbo_frame: "best" }, class: 'btn btn-outline-dark fw-bold' do %>
-      Best Offers
+    <% if @selected_category.present? %>
+      <h1><%= @selected_category.name %></h1>
+    <% else %>
+      <h1>Products</h1>
     <% end %>
-    <%= link_to products_path, data: { turbo_frame: "best" }, class: 'btn btn-outline-dark fw-bold' do %>
-      Best Sellings
+    <%= link_to products_path, class: 'btn btn-outline-dark fw-bold' do %>
+      All products
     <% end %>
+
     <div class="pagy bg-light"><%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %></div>
   </div>
+
   <div class="row">
     <%= render @products %>
   </div>

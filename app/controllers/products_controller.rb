@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.order(name: :asc)
+    @selected_category = Category.find_by(id: params[:category_id]) if params[:category_id].present?
     if params[:query].present?
       @products = Product.search_products_by_name_price_or_discount(params[:query])
     else
@@ -11,9 +12,17 @@ class ProductsController < ApplicationController
       @pagy, @products = pagy(@products, items: 20)
     if params[:category_id]
        @products = @products.where(category_id: params[:category_id])
-       @products_best = Product.where(discount: 20..40).limit(8)
+    end
+    if params[:min_price].present?
+      @products = @products.where("price >= ?", params[:min_price])
+    end
+    if params[:max_price].present?
+      @products = @products.where("price <= ?", params[:max_price])
     end
   end
+
+
+
 
   def show
     @product = Product.find(params[:id])
