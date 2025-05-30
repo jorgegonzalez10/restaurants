@@ -49,7 +49,10 @@ class Users::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to users_products_url, notice: "Product was successfully updated.", status: :see_other
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to users_products_url, notice: "Product was successfully updated.", status: :see_other }
+      end
     else
       render :edit, status: :unprocessable_entity
     end

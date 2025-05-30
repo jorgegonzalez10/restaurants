@@ -28,4 +28,10 @@ class Product < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+    ORDER_BY = {
+      "Newest" => "created_at DESC",
+      "Best offers" => "discount DESC",
+      "Best sellers" => "RANDOM()"
+    }
 end
