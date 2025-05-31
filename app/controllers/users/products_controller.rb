@@ -5,7 +5,7 @@ class Users::ProductsController < ApplicationController
     if params[:query].present?
       @products = Product.includes(:reviews).search_products_by_name_price_or_discount(params[:query])
     else
-    @products = Product.includes(:reviews).ordered
+      @products = Product.includes(:reviews).ordered
     end
   end
 
@@ -49,7 +49,7 @@ class Users::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to users_products_path, notice: "Product was successfully updated.", status: :see_other 
+      redirect_to users_products_path, notice: "Product was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
