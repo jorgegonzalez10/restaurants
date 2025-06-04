@@ -1,0 +1,41 @@
+<!-- _sidebar.html.erb -->
+<div class="sidebar-bg p-3">
+  <!-- Categories Accordion -->
+  <div class="accordion accordion-flush" id="categoriesAccordion">
+    <div class="accordion-item border-0">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed fw-bold fs-5 text-white bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#flush-categories" aria-expanded="false" aria-controls="flush-categories">
+          Categories <i class="fa-solid fa-arrows-up-down ms-2"></i>
+        </button>
+      </h2>
+      <div id="flush-categories" class="accordion-collapse collapse" data-bs-parent="#categoriesAccordion">
+        <div class="accordion-body p-0">
+          <ul class="list-unstyled">
+            <%= render partial: 'category', collection: @categories %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Price Filter -->
+  <div class="mt-4">
+    <h5 class="fw-bold text-white mb-3">Price Range</h5>
+    <%= form_with url: products_path, method: :get, class: "price-filter-form" do |form| %>
+      <div class="mb-3">
+        <%= form.number_field :min_price,
+            class: "form-control rounded-pill",
+            placeholder: "Min Price",
+            onChange: 'this.form.requestSubmit()',
+            value: params[:min_price] %>
+      </div>
+      <div class="mb-3">
+        <%= form.number_field :max_price,
+            class: "form-control rounded-pill",
+            placeholder: "Max Price",
+            onChange: 'this.form.requestSubmit()',
+            value: params[:max_price] %>
+      </div>
+    <% end %>
+  </div>
+</div>

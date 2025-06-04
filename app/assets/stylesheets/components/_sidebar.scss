@@ -1,24 +1,28 @@
+
 .sidebar-bg {
-  width: 15%;
+  width: 100%;
   background-color: #212529;
-  height: calc(100vh);
-  overflow-y: auto;
-  position: fixed;
-  top: 100px;
+  height: auto;
+  position: relative;
+  top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 1000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow-y: visible;
 }
 
 .with-sidebar {
-  margin-left: 220px;
+  margin-left: 0;
 }
 
 .main-content {
-  padding: 0rem;
+  padding: 1rem;
 }
 
-.sidebar-bg h6 {
-  color: white;
+.sidebar-bg h6,
+.sidebar-bg .accordion-button {
+  color: white !important;
 }
 
 .sidebar-bg .list-group-item {
@@ -26,9 +30,67 @@
   border-radius: 0.5rem !important;
   border: none;
   color: white;
+  padding: 0.5rem 1rem;
 }
 
 .sidebar-bg .list-group-item:hover {
   background-color: #FFCBCB !important;
   color: #102C57 !important;
+}
+
+
+.sidebar-bg .accordion-button:not(.collapsed) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-bg .accordion-body {
+  padding: 0.5rem 0;
+}
+
+/* Price Filter */
+.sidebar-bg .form-control {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.sidebar-bg .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .sidebar-bg {
+    width: 35%;
+    position: relative;
+    height: auto;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .sidebar-bg {
+    width: 15%;
+    height: calc(100vh - 100px);
+    position: fixed;
+    top: 100px;
+    left: 0;
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .with-sidebar {
+    margin-left: 220px;
+  }
+
+  .main-content {
+    padding: 2rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .sidebar-bg {
+    width: 15%;
+  }
 }

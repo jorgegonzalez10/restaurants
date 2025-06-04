@@ -1,4 +1,7 @@
 class ProductService
+   attr_reader :products, :categories, :selected_category,
+              :product, :review, :reviews, :average_rating, :pagy
+
   def initialize(params)
     @params = params
   end
@@ -22,5 +25,14 @@ class ProductService
       categories: categories,
       selected_category: selected_category
     }
+  end
+
+  def show(product_id, params)
+    @product = Product.find(product_id)
+    @review = Review.new
+
+    @average_rating = @product.reviews.average(:rating)&.round(2) || 0
+
+    self
   end
 end

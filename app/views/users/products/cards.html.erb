@@ -15,7 +15,7 @@
       <%= link_to "Cards", users_products_cards_path, class:"btn btn-lg active buttongroup", id:"active"%>
     </div>
   </div>
-  <div class="grid-container">
+  <div class="row">
     <% @products.each do |product| %>
       <% if controller_path == 'users/products' && product.user == current_user %>
       <%= render "products/product", product: product %>
