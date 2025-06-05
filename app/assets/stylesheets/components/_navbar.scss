@@ -2,7 +2,7 @@
   background-color: #212529;
   position: sticky !important;
   top: 0;
-  z-index: 9999 !important;
+  z-index: 9999 ;
   height: 100px;
   overflow: visible;
 }
@@ -11,11 +11,6 @@
   overflow: visible !important;
 }
  .search{
-  width: 35rem;
+  width: 40%;
   margin-left: 20rem;
  }
-
- #hamburger-button.open {
-  background-color: #343a40; 
-  border-radius: 5px;
-}

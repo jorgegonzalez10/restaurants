@@ -47,7 +47,7 @@
   padding: 0.5rem 0;
 }
 
-/* Price Filter */
+
 .sidebar-bg .form-control {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
@@ -58,8 +58,8 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+
+@media (min-width: 1000px) {
   .sidebar-bg {
     width: 35%;
     position: relative;
@@ -67,7 +67,7 @@
   }
 }
 
-/* Large devices (desktops, 992px and up) */
+
 @media (min-width: 992px) {
   .sidebar-bg {
     width: 15%;
@@ -79,8 +79,8 @@
     overflow-y: auto;
   }
 
-  .with-sidebar {
-    margin-left: 220px;
+  .width-sidebar {
+    margin-left: 200px;
   }
 
   .main-content {
@@ -88,9 +88,9 @@
   }
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
+
 @media (min-width: 1200px) {
   .sidebar-bg {
-    width: 15%;
+    width: 20%;
   }
 }

@@ -1,19 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-
-
-
-    <!-- Brand -->
     <a class="navbar-brand fw-bold" href="#">MyShop</a>
 
-    <!-- Mobile menu toggle -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar content -->
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <!-- Main navigation -->
+
+
+    <div class="collapse navbar-collapse bg-dark p-4  p-lg-0" id="navbarContent">
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to "Home", root_url, class: "nav-link fw-bold fs-3 #{current_page?(root_url) ? 'active' : ''}" %>
@@ -23,9 +19,8 @@
         </li>
       </ul>
 
-      <!-- Search (desktop only) -->
       <% if controller_path == 'products' %>
-        <div class="mx-auto">
+        <div class="d-none d-lg-block mx-auto">
           <%= form_with url: products_path, method: :get, class: "d-flex", role: "search" do %>
             <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search" %>
             <%= submit_tag "Search", class: "btn btn-outline-light ms-2" %>
@@ -33,18 +28,8 @@
         </div>
       <% end %>
 
-      <!-- User menu -->
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
-          <!-- Cart -->
-          <li class="nav-item me-2">
-            <%= link_to cart_path(session[:cart_id]), class: "btn btn-outline-light position-relative" do %>
-              <i class="fa-solid fa-cart-shopping"></i>
-              <%= render "carts/cart_count" %>
-            <% end %>
-          </li>
-
-          <!-- User dropdown -->
           <li class="nav-item dropdown">
             <%= image_tag(
                   current_user.photo.attached? ? current_user.photo : '1077063.png',
@@ -62,13 +47,28 @@
               <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
           </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link fw-bold fs-4 text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary-custom ms-2 fs-4 text-white" %>
+          </li>
         <% end %>
       </ul>
     </div>
+    <% if user_signed_in? %>
+      <div class="d-flex align-items-center me-auto ms-2">
+        <%= link_to cart_path(session[:cart_id]), class: "btn btn-outline-light btn-lg position-relative" do %>
+          <i class="fa-solid fa-cart-shopping"></i>
+          <%= render "carts/cart_count" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </nav>
 
-<!-- Mobile search (appears below navbar) -->
+
 <% if controller_path == 'products' %>
   <div class="d-lg-none bg-dark p-2">
     <%= form_with url: products_path, method: :get, class: "d-flex", role: "search" do %>

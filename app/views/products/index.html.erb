@@ -39,8 +39,8 @@
 </aside>
 
 <div class="container mt-5">
-  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">    <h1>
-
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mt-5">
+    <h1>
       <% if @selected_category.present? %>
         <%= @selected_category.name %>
       <% elsif params[:order_by] == "Best offers" %>
@@ -51,7 +51,7 @@
         Products
       <% end %>
     </h1>
-   
+
       <%= link_to products_path, class: 'btn btn-outline-dark fw-bold' do %>
         All products
       <% end %>

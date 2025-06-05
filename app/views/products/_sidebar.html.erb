@@ -1,6 +1,6 @@
-<!-- _sidebar.html.erb -->
-<div class="sidebar-bg p-3">
-  <!-- Categories Accordion -->
+
+<div class="sidebar-bg ">
+
   <div class="accordion accordion-flush" id="categoriesAccordion">
     <div class="accordion-item border-0">
       <h2 class="accordion-header">
@@ -18,18 +18,17 @@
     </div>
   </div>
 
-  <!-- Price Filter -->
   <div class="mt-4">
     <h5 class="fw-bold text-white mb-3">Price Range</h5>
     <%= form_with url: products_path, method: :get, class: "price-filter-form" do |form| %>
-      <div class="mb-3">
+      <div class="mb-3 mx-5">
         <%= form.number_field :min_price,
             class: "form-control rounded-pill",
             placeholder: "Min Price",
             onChange: 'this.form.requestSubmit()',
             value: params[:min_price] %>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 mx-5">
         <%= form.number_field :max_price,
             class: "form-control rounded-pill",
             placeholder: "Max Price",
