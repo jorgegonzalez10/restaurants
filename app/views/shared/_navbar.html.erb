@@ -20,7 +20,7 @@
       </ul>
 
       <% if controller_path == 'products' %>
-        <div class="d-none d-lg-block mx-auto">
+        <div class="d-none d-lg-block mx-auto w-50" >
           <%= form_with url: products_path, method: :get, class: "d-flex", role: "search" do %>
             <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search" %>
             <%= submit_tag "Search", class: "btn btn-outline-light ms-2" %>
